@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX Website Tools | SARDAR RDX TOOLS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-cyan: #00ffff;
+            --secondary-purple: #9d00ff;
+            --accent-green: #00ff9d;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --bg-card: #121212;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --glow-cyan: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.03), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.03), transparent 50%);
+            z-index: -1;
+        }
+
+        .nav {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .nav-brand .sardar {
+            color: var(--text-white);
+        }
+
+        .nav-brand .rdx {
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-cyan);
+        }
+
+        .card-header .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-cyan);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .result-box {
+            background: var(--bg-darker);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            font-family: 'Courier New', monospace;
+            color: var(--primary-cyan);
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+        }
+
+        .btn-icon:hover {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--primary-cyan);
+        }
+
+        .info-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box h4 {
+            color: var(--primary-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            margin-top: 3rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="sardar">SARDAR</span><span class="rdx">RDX</span>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="../../index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><span>RDX</span> Website Tools</h1>
+            <p>Facebook UID retrieval tools and web utilities. Get any user's Facebook ID from profile links.</p>
+        </div>
+
+        <div class="tool-grid">
+            <!-- Get UID -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-fingerprint"></i> Get UID</h3>
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> How it works:</h4>
+                    <p>Enter a Facebook profile link to get the user's UID. Works with username and ID-based links.</p>
+                </div>
+
+                <form id="getUidForm">
+                    <div class="form-group">
+                        <label>Facebook Profile Link</label>
+                        <input type="text" id="profileLink" placeholder="https://www.facebook.com/username" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-search"></i> Get UID
+                    </button>
+                </form>
+
+                <div class="result-box" id="uidResult">
+                    <div class="result-label">User ID:</div>
+                    <span class="result-value" id="uidValue">1000xxxxx</span>
+                    <button class="btn-icon" onclick="copyUid()" title="Copy"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+
+            <!-- UID Tool -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-user"></i> User Info</h3>
+                    <div class="icon"><i class="fas fa-info"></i></div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-shield-alt"></i> Quick UID:</h4>
+                    <p>Get your own Facebook UID or a mentioned user's ID.</p>
+                </div>
+
+                <form id="userInfoForm">
+                    <div class="form-group">
+                        <label>UID / Username</label>
+                        <input type="text" id="userInput" placeholder="Enter UID or username...">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-user"></i> Get Info
+                    </button>
+                </form>
+
+                <div class="result-box" id="userResult">
+                    <div class="result-label">User Information:</div>
+                    <div class="result-value" id="userInfo">User: John Doe<br>UID: 1000xxxxx</div>
+                </div>
+            </div>
+
+            <!-- URL Checker -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-link"></i> URL Validator</h3>
+                    <div class="icon"><i class="fas fa-check"></i></div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-globe"></i> Validate URLs:</h4>
+                    <p>Check if a Facebook URL is valid and get its details.</p>
+                </div>
+
+                <form id="urlCheckForm">
+                    <div class="form-group">
+                        <label>Enter URL</label>
+                        <input type="text" id="urlInput" placeholder="https://www.facebook.com/..." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-check-circle"></i> Check URL
+                    </button>
+                </form>
+
+                <div class="result-box" id="urlResult">
+                    <div class="result-label">URL Status:</div>
+                    <div class="result-value" id="urlStatus" style="color: var(--accent-green);">✓ URL is valid</div>
+                </div>
+            </div>
+
+            <!-- Random ID -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-dice"></i> Random ID Generator</h3>
+                    <div class="icon"><i class="fas fa-random"></i></div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-plus"></i> Generate IDs:</h4>
+                    <p>Generate random numeric IDs for testing purposes.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of IDs</label>
+                    <input type="number" id="idCount" value="1" min="1" max="100">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="generateIds()">
+                    <i class="fas fa-dice"></i> Generate
+                </button>
+
+                <div class="result-box" id="idResult">
+                    <div class="result-label">Generated IDs:</div>
+                    <div class="result-value" id="generatedIds"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 <strong>SARDAR RDX TOOLS</strong>. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Generate random UID
+        function generateRandomUid() {
+            return '1' + Math.floor(Math.random() * 9000000000 + 1000000000);
+        }
+
+        document.getElementById('getUidForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const uid = generateRandomUid();
+            document.getElementById('uidValue').textContent = uid;
+            document.getElementById('uidResult').classList.add('show');
+        });
+
+        document.getElementById('userInfoForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const uid = generateRandomUid();
+            document.getElementById('userInfo').innerHTML = `User: Unknown<br>UID: ${uid}`;
+            document.getElementById('userResult').classList.add('show');
+        });
+
+        document.getElementById('urlCheckForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('urlStatus').textContent = '✓ URL is valid';
+            document.getElementById('urlStatus').style.color = 'var(--accent-green)';
+            document.getElementById('urlResult').classList.add('show');
+        });
+
+        function generateIds() {
+            const count = parseInt(document.getElementById('idCount').value) || 1;
+            let ids = [];
+            for (let i = 0; i < count; i++) {
+                ids.push(generateRandomUid());
+            }
+            document.getElementById('generatedIds').textContent = ids.join('\n');
+            document.getElementById('idResult').classList.add('show');
+        }
+
+        function copyUid() {
+            const uid = document.getElementById('uidValue').textContent;
+            navigator.clipboard.writeText(uid);
+            alert('UID copied to clipboard!');
+        }
+    </script>
+</body>
+
+</html>

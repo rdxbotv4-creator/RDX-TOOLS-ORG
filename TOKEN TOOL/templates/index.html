@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sardar RDX - Token Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span class="logo-text">
+                        <span class="text-sardar">SARDAR</span>
+                        <span class="text-rdx">RDX</span>
+                    </span>
+                </div>
+            </div>
+            <p class="subtitle">
+                <span class="typing-text">Premium Facebook Token Generator</span>
+                <span class="owner-badge">
+                    <i class="fas fa-crown"></i> Owned by Sardar RDX
+                </span>
+            </p>
+            <div class="header-decorations">
+                <div class="sparkle sparkle-1"><i class="fas fa-star"></i></div>
+                <div class="sparkle sparkle-2"><i class="fas fa-star"></i></div>
+                <div class="sparkle sparkle-3"><i class="fas fa-star"></i></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="welcome-banner">
+                <div class="banner-content">
+                    <i class="fas fa-rocket"></i>
+                    <span>Welcome to Sardar RDX Token Generator</span>
+                    <i class="fas fa-rocket"></i>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="single">
+                    <span class="btn-icon"><i class="fas fa-user"></i></span>
+                    <span class="btn-text">Single Account</span>
+                    <span class="btn-glow"></span>
+                </button>
+                <button class="tab-btn" data-tab="multiple">
+                    <span class="btn-icon"><i class="fas fa-users"></i></span>
+                    <span class="btn-text">Multiple Accounts</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+
+            <!-- Single Account Form -->
+            <div class="tab-content active" id="single">
+                <div class="form-card">
+                    <div class="form-header">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Single Account Login</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="label-icon"><i class="fas fa-envelope"></i></span>
+                            <span>Email / Phone</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="email" placeholder="Enter email or phone number" required>
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="label-icon"><i class="fas fa-lock"></i></span>
+                            <span>Password</span>
+                        </label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Enter password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="auth">
+                            <span class="label-icon"><i class="fas fa-shield-alt"></i></span>
+                            <span>2FA Code / Auth Key</span>
+                            <span class="optional-badge">Optional</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="auth" placeholder="Enter 2FA code or auth key (if required)">
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <span>Select App Type</span>
+                        </label>
+                        <div class="app-grid" id="appGrid">
+                            <label class="app-option">
+                                <input type="radio" name="app_type"
+                                    value="350685531728|62f8ce9f74b12f84c123cc23437a4a32" data-prefix="EAAAAU">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fab fa-android"></i></span>
+                                    <span class="app-name">Facebook Android</span>
+                                    <small>EAAAAU</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type" value="6628568379|c1e620fa708a1d5696fb991c1bde5662"
+                                    data-prefix="EAAAAAY" checked>
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fab fa-apple"></i></span>
+                                    <span class="app-name">Facebook iPhone</span>
+                                    <small>EAAAAAY</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type"
+                                    value="275254692598279|585aec5b4c27376758abb7ffcb9db2af" data-prefix="EAAD6V7">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fas fa-plane"></i></span>
+                                    <span class="app-name">Facebook Lite</span>
+                                    <small>EAAD6V7</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type"
+                                    value="256002347743983|374e60f8b9bb6b8cbb30f78030438895" data-prefix="EAADO1">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fab fa-facebook-messenger"></i></span>
+                                    <span class="app-name">Messenger Android</span>
+                                    <small>EAADO1</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type"
+                                    value="438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28" data-prefix="EAAGO">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fas fa-bullhorn"></i></span>
+                                    <span class="app-name">Ads Manager</span>
+                                    <small>EAAGO</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type"
+                                    value="200424423651082|2a9918c6bcd75b94cefcbb5635c6ad16" data-prefix="EAAC2S">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fas fa-comments"></i></span>
+                                    <span class="app-name">Messenger Lite</span>
+                                    <small>EAAC2S</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn-generate" onclick="generateToken()">
+                        <span class="btn-content">
+                            <i class="fas fa-key"></i>
+                            <span>Generate Token</span>
+                        </span>
+                        <span class="btn-particles">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Multiple Accounts Form -->
+            <div class="tab-content" id="multiple">
+                <div class="form-card">
+                    <div class="form-header">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Multiple Accounts Login</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accounts">
+                            <span class="label-icon"><i class="fas fa-list"></i></span>
+                            <span>Account List</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <textarea id="accounts" rows="8"
+                                placeholder="email|password|auth_key (one per line)&#10;Example:&#10;user@example.com|password123|"></textarea>
+                            <div class="input-glow"></div>
+                        </div>
+                        <small class="help-text">
+                            <i class="fas fa-info-circle"></i>
+                            Format: email|password|auth_key (auth_key is optional)
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <span>Select App Type</span>
+                        </label>
+                        <div class="app-grid" id="appGridMulti">
+                            <label class="app-option">
+                                <input type="radio" name="app_type_multi"
+                                    value="350685531728|62f8ce9f74b12f84c123cc23437a4a32" data-prefix="EAAAAU">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fab fa-android"></i></span>
+                                    <span class="app-name">Facebook Android</span>
+                                    <small>EAAAAU</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type_multi"
+                                    value="6628568379|c1e620fa708a1d5696fb991c1bde5662" data-prefix="EAAAAAY" checked>
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fab fa-apple"></i></span>
+                                    <span class="app-name">Facebook iPhone</span>
+                                    <small>EAAAAAY</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type_multi"
+                                    value="275254692598279|585aec5b4c27376758abb7ffcb9db2af" data-prefix="EAAD6V7">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fas fa-plane"></i></span>
+                                    <span class="app-name">Facebook Lite</span>
+                                    <small>EAAD6V7</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type_multi"
+                                    value="256002347743983|374e60f8b9bb6b8cbb30f78030438895" data-prefix="EAADO1">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fab fa-facebook-messenger"></i></span>
+                                    <span class="app-name">Messenger Android</span>
+                                    <small>EAADO1</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type_multi"
+                                    value="438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28" data-prefix="EAAGO">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fas fa-bullhorn"></i></span>
+                                    <span class="app-name">Ads Manager</span>
+                                    <small>EAAGO</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                            <label class="app-option">
+                                <input type="radio" name="app_type_multi"
+                                    value="200424423651082|2a9918c6bcd75b94cefcbb5635c6ad16" data-prefix="EAAC2S">
+                                <span class="app-card">
+                                    <span class="app-icon"><i class="fas fa-comments"></i></span>
+                                    <span class="app-name">Messenger Lite</span>
+                                    <small>EAAC2S</small>
+                                    <span class="card-shine"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn-generate" onclick="generateMultipleTokens()">
+                        <span class="btn-content">
+                            <i class="fas fa-keys"></i>
+                            <span>Generate All Tokens</span>
+                        </span>
+                        <span class="btn-particles">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results" id="results" style="display: none;">
+                <div class="results-header">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Results</h3>
+                </div>
+                <div id="resultsContent"></div>
+            </div>
+
+            <!-- 2FA Modal -->
+            <div class="modal" id="twoFactorModal">
+                <div class="modal-content">
+                    <div class="modal-glow"></div>
+                    <span class="close" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <div class="modal-header">
+                        <div class="modal-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Two-Factor Authentication</h3>
+                    </div>
+                    <p>Please enter your 2FA code to continue:</p>
+                    <div class="input-wrapper">
+                        <input type="text" id="twoFactorCode" placeholder="Enter 2FA code">
+                        <div class="input-glow"></div>
+                    </div>
+                    <button class="btn-generate" onclick="submitTwoFactor()">
+                        <span class="btn-content">
+                            <i class="fas fa-check"></i>
+                            <span>Submit</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>Sardar RDX</span>
+                </div>
+                <p class="footer-text">
+                    <span class="owner-text">⚡ Owned by Sardar RDX ⚡</span>
+                </p>
+                <p class="copyright">
+                    <i class="fas fa-copyright"></i>
+                    2024 All Rights Reserved
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=100009012838085" target="_blank"
+                        class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" class="social-icon instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@rdx-bot-zone?si=07glyrc8s-lSIkK8" target="_blank"
+                        class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/qr/Q65AI7L4ZOBFO1" target="_blank" class="social-icon whatsapp"><i
+                            class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

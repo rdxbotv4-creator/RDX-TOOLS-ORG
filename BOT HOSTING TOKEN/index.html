@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX Bot Hosting (Token) | SARDAR RDX TOOLS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-cyan: #00ffff;
+            --primary-blue: #00d4ff;
+            --secondary-purple: #9d00ff;
+            --accent-green: #00ff9d;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --bg-card: #121212;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --glow-cyan: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .nav {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .nav-brand .sardar {
+            color: var(--text-white);
+        }
+
+        .nav-brand .rdx {
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-cyan);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .server-status {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .status-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .status-box.active {
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+
+        .status-box .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-box.active .indicator {
+            background: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+
+        .status-box .value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .status-box .label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-cyan);
+        }
+
+        .card-header .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-cyan);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            color: var(--primary-cyan);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .token-list {
+            margin-top: 1rem;
+        }
+
+        .token-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .token-info {
+            flex: 1;
+        }
+
+        .token-name {
+            font-weight: 600;
+            color: var(--text-white);
+            display: block;
+        }
+
+        .token-value {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--primary-cyan);
+        }
+
+        .token-status {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .token-status.active {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--accent-green);
+        }
+
+        .token-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon:hover {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+        }
+
+        .btn-icon.danger:hover {
+            background: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+
+        .log-window {
+            background: var(--bg-darker);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            height: 250px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .log-time {
+            color: var(--text-gray);
+            margin-right: 10px;
+        }
+
+        .log-entry.info .log-message {
+            color: var(--primary-cyan);
+        }
+
+        .log-entry.success .log-message {
+            color: var(--accent-green);
+        }
+
+        .log-entry.error .log-message {
+            color: #ff4444;
+        }
+
+        .info-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box h4 {
+            color: var(--primary-cyan);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            margin-top: 3rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--primary-cyan);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="sardar">SARDAR</span><span class="rdx">RDX</span>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="../../index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><span>RDX</span> Bot Hosting (Token)</h1>
+            <p>Token-based bot hosting service. Send messages using Facebook access tokens with multi-token support.</p>
+        </div>
+
+        <div class="server-status">
+            <div class="status-box active">
+                <span class="indicator"></span>
+                <span class="label">Server Status</span>
+                <span class="value">Online</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Active Tokens</span>
+                <span class="value" id="tokenCount">3</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Total Sent</span>
+                <span class="value" id="sentCount">5,891</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Success Rate</span>
+                <span class="value">98.5%</span>
+            </div>
+        </div>
+
+        <div class="tool-grid">
+            <!-- Send Message Form -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-paper-plane"></i> Send Message</h3>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> Token Options:</h4>
+                    <p>Use single token or multiple tokens for better delivery rate.</p>
+                </div>
+
+                <form id="sendForm">
+                    <div class="form-group">
+                        <label>Token Option</label>
+                        <select id="tokenOption">
+                            <option value="single">Single Token</option>
+                            <option value="multiple">Multiple Tokens</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Access Token(s)</label>
+                        <textarea id="tokenInput" placeholder="Enter token(s), one per line..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Thread ID</label>
+                        <input type="text" id="threadId" placeholder="Enter thread ID..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="messageInput" placeholder="Enter your message..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Interval (seconds)</label>
+                        <input type="number" value="3" min="1" max="30">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane"></i> Start Sending
+                    </button>
+                </form>
+            </div>
+
+            <!-- Token List -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-key"></i> Saved Tokens</h3>
+                    <button class="btn btn-secondary" onclick="addNewToken()">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+
+                <div class="token-list" id="tokenList">
+                    <div class="token-item">
+                        <div class="token-info">
+                            <span class="token-name">Main Token</span>
+                            <span class="token-value">EAA...7uZC</span>
+                        </div>
+                        <span class="token-status active">Active</span>
+                        <div class="token-actions">
+                            <button class="btn-icon" title="Copy"><i class="fas fa-copy"></i></button>
+                            <button class="btn-icon danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="token-item">
+                        <div class="token-info">
+                            <span class="token-name">Secondary Token</span>
+                            <span class="token-value">EAA...3xDq</span>
+                        </div>
+                        <span class="token-status active">Active</span>
+                        <div class="token-actions">
+                            <button class="btn-icon" title="Copy"><i class="fas fa-copy"></i></button>
+                            <button class="btn-icon danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="token-item">
+                        <div class="token-info">
+                            <span class="token-name">Backup Token</span>
+                            <span class="token-value">EAA...9mLw</span>
+                        </div>
+                        <span class="token-status active">Active</span>
+                        <div class="token-actions">
+                            <button class="btn-icon" title="Copy"><i class="fas fa-copy"></i></button>
+                            <button class="btn-icon danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="tool-card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h3><i class="fas fa-list"></i> Live Logs</h3>
+                    <button class="btn btn-secondary" onclick="clearLogs()">
+                        <i class="fas fa-eraser"></i> Clear
+                    </button>
+                </div>
+
+                <div class="log-window" id="logWindow">
+                    <div class="log-entry info">
+                        <span class="log-time">[10:30:45]</span>
+                        <span class="log-message">Flask server started on port 5000</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[10:30:46]</span>
+                        <span class="log-message">✓ Loaded 3 access tokens</span>
+                    </div>
+                    <div class="log-entry info">
+                        <span class="log-time">[10:31:00]</span>
+                        <span class="log-message">→ Message request received</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[10:31:01]</span>
+                        <span class="log-message">✓ Message sent from token 1</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[10:31:04]</span>
+                        <span class="log-message">✓ Message sent from token 2</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[10:31:07]</span>
+                        <span class="log-message">✓ Message sent from token 3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 <strong>SARDAR RDX TOOLS</strong>. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function addLog(type, message) {
+            const logWindow = document.getElementById('logWindow');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="log-time">[${time}]</span><span class="log-message">${message}</span>`;
+            logWindow.appendChild(entry);
+            logWindow.scrollTop = logWindow.scrollHeight;
+        }
+
+        function clearLogs() {
+            document.getElementById('logWindow').innerHTML = '';
+            addLog('info', 'Logs cleared');
+        }
+
+        function addNewToken() {
+            const token = prompt('Enter new access token:');
+            if (token) {
+                addLog('success', '✓ New token added successfully');
+            }
+        }
+
+        document.getElementById('sendForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            addLog('success', '✓ Message sending started');
+            addLog('info', '→ Using ' + (document.getElementById('tokenOption').value === 'single' ? 'single token' : 'multiple tokens'));
+        });
+
+        setInterval(() => {
+            const messages = [
+                { type: 'success', msg: '✓ Message sent successfully from token 1' },
+                { type: 'success', msg: '✓ Message sent successfully from token 2' },
+                { type: 'success', msg: '✓ Message sent successfully from token 3' },
+                { type: 'info', msg: '→ Rotating to next token...' }
+            ];
+            const random = messages[Math.floor(Math.random() * messages.length)];
+            addLog(random.type, random.msg);
+        }, 4000);
+    </script>
+</body>
+
+</html>

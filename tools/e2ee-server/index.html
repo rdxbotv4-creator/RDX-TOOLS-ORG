@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX E2EE Server | SARDAR RDX TOOLS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        .tool-page .hero-section {
+            min-height: 30vh;
+            padding-top: 80px;
+            padding-bottom: 40px;
+        }
+
+        .tool-page .hero-title {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body class="tool-page">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-container">
+            <a href="/index.html" class="nav-brand">
+                <span class="brand-text">
+                    <span class="brand-sardar">SARDAR</span>
+                    <span class="brand-rdx">RDX</span>
+                </span>
+                <span class="brand-subtitle">TOOLS</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="/index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="/index.html#tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+                <a href="/index.html#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tool Header -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Security</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">RDX E2EE</span>
+                <span class="title-line accent">Server</span>
+            </h1>
+            <p class="hero-description">
+                End-to-end encrypted server for secure communication and data transfer.
+            </p>
+        </div>
+    </header>
+
+    <!-- Tool Interface -->
+    <section class="tool-interface" id="tool-interface">
+        <div class="container">
+            <div class="tool-wrapper">
+                <div class="tool-sidebar">
+                    <h3><i class="fas fa-shield-alt"></i> Security Controls</h3>
+                    <div class="tool-menu">
+                        <a href="#" class="tool-menu-item active">
+                            <i class="fas fa-lock"></i> Encrypt
+                        </a>
+                        <a href="#" class="tool-menu-item">
+                            <i class="fas fa-unlock"></i> Decrypt
+                        </a>
+                        <a href="#" class="tool-menu-item">
+                            <i class="fas fa-key"></i> Keys
+                        </a>
+                        <a href="#" class="tool-menu-item">
+                            <i class="fas fa-history"></i> Logs
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tool-main">
+                    <div class="tool-header-bar">
+                        <h2><i class="fas fa-shield-alt"></i> E2EE Server</h2>
+                        <div class="tool-status">
+                            <span class="status-indicator active"></span>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+
+                    <div class="tool-content">
+                        <!-- Encryption Panel -->
+                        <div class="tool-card">
+                            <h3><i class="fas fa-lock"></i> Encrypt Data</h3>
+                            <form id="encryptForm">
+                                <div class="form-group">
+                                    <label>Data to Encrypt</label>
+                                    <textarea rows="4" placeholder="Enter data to encrypt..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Encryption Key</label>
+                                    <input type="password" placeholder="Enter encryption key...">
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-lock"></i> Encrypt
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Decryption Panel -->
+                        <div class="tool-card">
+                            <h3><i class="fas fa-unlock"></i> Decrypt Data</h3>
+                            <form id="decryptForm">
+                                <div class="form-group">
+                                    <label>Encrypted Data</label>
+                                    <textarea rows="4" placeholder="Enter encrypted data..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Decryption Key</label>
+                                    <input type="password" placeholder="Enter decryption key...">
+                                </div>
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fas fa-unlock"></i> Decrypt
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Key Management -->
+                        <div class="tool-card">
+                            <h3><i class="fas fa-key"></i> Key Management</h3>
+                            <div class="key-list">
+                                <div class="key-item">
+                                    <div class="key-info">
+                                        <span class="key-name">Master Key</span>
+                                        <span class="key-created">Created: Today</span>
+                                    </div>
+                                    <button class="btn-icon" title="Regenerate"><i class="fas fa-redo"></i></button>
+                                </div>
+                                <div class="key-item">
+                                    <div class="key-info">
+                                        <span class="key-name">Session Key</span>
+                                        <span class="key-created">Created: 2 hours ago</span>
+                                    </div>
+                                    <button class="btn-icon" title="Regenerate"><i class="fas fa-redo"></i></button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" style="margin-top: 15px;">
+                                <i class="fas fa-plus"></i> Generate New Key
+                            </button>
+                        </div>
+
+                        <!-- Security Stats -->
+                        <div class="tool-card">
+                            <h3><i class="fas fa-chart-line"></i> Security Stats</h3>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-value">2,547</span>
+                                    <span class="stat-label">Encryptions</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-value">1,892</span>
+                                    <span class="stat-label">Decryptions</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-value">0</span>
+                                    <span class="stat-label">Failed</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-value">AES-256</span>
+                                    <span class="stat-label">Algorithm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool-specific CSS -->
+    <style>
+        .tool-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .tool-sidebar {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .tool-sidebar h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--primary-cyan);
+        }
+
+        .tool-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border-radius: var(--radius-md);
+            color: var(--text-gray);
+            transition: var(--transition-normal);
+            margin-bottom: 5px;
+        }
+
+        .tool-menu-item:hover,
+        .tool-menu-item.active {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--primary-cyan);
+        }
+
+        .tool-main {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+        }
+
+        .tool-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .tool-header-bar h2 {
+            font-size: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .tool-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        .tool-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .tool-card h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--primary-cyan);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="password"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-white);
+            font-family: var(--font-body);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .key-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .key-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 12px 15px;
+        }
+
+        .key-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .key-name {
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .key-created {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: var(--radius-sm);
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+
+        .btn-icon:hover {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .tool-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-glow"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">
+                        <span class="logo-sardar">SARDAR</span>
+                        <span class="logo-rdx">RDX</span>
+                        <span class="logo-tools">TOOLS</span>
+                    </h3>
+                    <p class="footer-tagline">Advanced Automation Platform</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="/index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="/index.html#tools"><i class="fas fa-chevron-right"></i> Tools</a>
+                    <a href="/index.html#about"><i class="fas fa-chevron-right"></i> About</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <a href="mailto:support@sardarrdx.tools"><i class="fas fa-envelope"></i> support@sardarrdx.tools</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 <strong>SARDAR RDX TOOLS</strong>. All Rights Reserved.</p>
+                <p class="footer-credit">Designed with <i class="fas fa-heart"></i> by SARDAR RDX</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/assets/js/particles.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

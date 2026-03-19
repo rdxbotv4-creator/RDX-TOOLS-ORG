@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARDAR RDX TOOLS | Professional Multi-Tool Hub</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="rdx-prefix">SARDAR</span>
+                <span class="rdx-main">RDX</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <p class="loader-text">Loading RDX Tools...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-text">
+                    <span class="brand-sardar">SARDAR</span>
+                    <span class="brand-rdx">RDX</span>
+                </span>
+                <span class="brand-subtitle">TOOLS</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="#tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+                <a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+                <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Professional Tool Hub</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">SARDAR RDX</span>
+                <span class="title-line accent">TOOLS</span>
+            </h1>
+            <p class="hero-description">
+                Advanced automation toolkit with bot management, token handling,
+                and conversation tools. Powered by cutting-edge technology.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-label">Tools</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="99">0</span>
+                    <span class="stat-label">% Uptime</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="24">0</span>
+                    <span class="stat-label">/7 Support</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#tools" class="btn btn-primary glow-btn">
+                    <i class="fas fa-rocket"></i>
+                    <span>Explore Tools</span>
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-info"></i>
+                    <span>Learn More</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <i class="fas fa-robot"></i>
+                <span>Bot Automation</span>
+            </div>
+            <div class="floating-card card-2">
+                <i class="fas fa-key"></i>
+                <span>Token Manager</span>
+            </div>
+            <div class="floating-card card-3">
+                <i class="fas fa-comments"></i>
+                <span>Convo Tools</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search & Filter Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="toolSearch" placeholder="Search tools...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="bot">Bot Tools</button>
+                    <button class="filter-btn" data-filter="token">Token Tools</button>
+                    <button class="filter-btn" data-filter="convo">Convo Tools</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid Section -->
+    <section class="tools-section" id="tools">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-icon"><i class="fas fa-tools"></i></span>
+                    Available Tools
+                </h2>
+                <p class="section-subtitle">Choose your weapon and start automating</p>
+            </div>
+
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Tool Card 1: Bot Boating Server -->
+                <div class="tool-card" data-category="bot">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Bot Boating</h3>
+                        <p class="card-description">Advanced bot traffic simulation and management system for testing
+                            and automation purposes.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> Traffic Generation</span>
+                            <span><i class="fas fa-check"></i> Bot Management</span>
+                            <span><i class="fas fa-check"></i> Real-time Stats</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tools/bot-boating/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 2: Bot Hosting Token Server -->
+                <div class="tool-card" data-category="bot">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Bot Hosting</h3>
+                        <p class="card-description">Token-based bot hosting service with secure authentication and
+                            resource management.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> Token Generation</span>
+                            <span><i class="fas fa-check"></i> Token Validation</span>
+                            <span><i class="fas fa-check"></i> Secure Hosting</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tools/bot-hosting/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 3: Post Convo Tool -->
+                <div class="tool-card" data-category="convo">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Post Convo</h3>
+                        <p class="card-description">Powerful conversation and post management tool for automated
+                            messaging and thread creation.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> Auto-Posting</span>
+                            <span><i class="fas fa-check"></i> Thread Management</span>
+                            <span><i class="fas fa-check"></i> Scheduled Posts</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tools/post-convo/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 4: Token Tool -->
+                <div class="tool-card" data-category="token">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Token Tool</h3>
+                        <p class="card-description">Comprehensive token generation and management system with multiple
+                            token types and encryption.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> Multi-Token Types</span>
+                            <span><i class="fas fa-check"></i> Encryption</span>
+                            <span><i class="fas fa-check"></i> API Integration</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tools/token-tool/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 5: E2EE Server -->
+                <div class="tool-card" data-category="bot">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX E2EE Server</h3>
+                        <p class="card-description">End-to-end encrypted server for secure communication and data
+                            transfer.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> E2E Encryption</span>
+                            <span><i class="fas fa-check"></i> Secure Transfer</span>
+                            <span><i class="fas fa-check"></i> Privacy First</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tools/e2ee-server/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 6: Website Tools (Maintenance) -->
+                <div class="tool-card" data-category="token">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="card-status maintenance">
+                            <span class="status-dot"></span>
+                            Maintenance
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Website Tools</h3>
+                        <p class="card-description">Collection of website utility tools including UID generators and web
+                            utilities.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> UID Generator</span>
+                            <span><i class="fas fa-check"></i> Web Utilities</span>
+                            <span><i class="fas fa-clock"></i> Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tools/website-tools/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-clock"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 7: Original POST CONVO -->
+                <div class="tool-card" data-category="convo">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Post Convo (Python)</h3>
+                        <p class="card-description">Python-powered conversation tool with password protection and token
+                            management.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> Python Backend</span>
+                            <span><i class="fas fa-check"></i> Password Protected</span>
+                            <span><i class="fas fa-check"></i> Auto Posting</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="POST CONVO/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 8: E2EE Server (Original) -->
+                <div class="tool-card" data-category="bot">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX E2EE Server (Python)</h3>
+                        <p class="card-description">End-to-end encrypted server with AES-256 encryption for secure
+                            communication.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> AES-256 Encryption</span>
+                            <span><i class="fas fa-check"></i> Flask Backend</span>
+                            <span><i class="fas fa-check"></i> Secure Messages</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="E3EE SERVER/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 9: Token Tool (Original) -->
+                <div class="tool-card" data-category="token">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-passport"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX Token Tool (Python)</h3>
+                        <p class="card-description">Advanced Facebook token generation with RSA encryption and Flask
+                            backend.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> RSA Encryption</span>
+                            <span><i class="fas fa-check"></i> Facebook Login</span>
+                            <span><i class="fas fa-check"></i> Token Validation</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="TOKEN TOOL/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 10: Website Tools (Original) -->
+                <div class="tool-card" data-category="token">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <div class="card-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">RDX UID Tools</h3>
+                        <p class="card-description">Facebook UID retrieval tools. Get user IDs from profile links
+                            easily.</p>
+                        <div class="card-features">
+                            <span><i class="fas fa-check"></i> Get UID</span>
+                            <span><i class="fas fa-check"></i> URL Validator</span>
+                            <span><i class="fas fa-check"></i> Random ID Gen</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="WEBSITE TOOLS/index.html" class="btn-launch">
+                            <span>Launch Tool</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-icon"><i class="fas fa-star"></i></span>
+                    About SARDAR RDX
+                </h2>
+                <p class="section-subtitle">Next-generation automation platform</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome to SARDAR RDX TOOLS</h3>
+                    <p>
+                        SARDAR RDX TOOLS is a comprehensive multi-tool platform designed for advanced
+                        automation and management tasks. Our platform provides cutting-edge solutions
+                        for bot management, token handling, conversation automation, and more.
+                    </p>
+                    <p>
+                        Built with modern technologies and featuring a cyberpunk-inspired aesthetic,
+                        we deliver tools that are both powerful and visually stunning.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Fast Performance</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure & Safe</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-sync"></i>
+                            <span>Regular Updates</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-headset"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="cyber-circle">
+                        <div class="circle-inner">
+                            <span class="rdx-text">RDX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-glow"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">
+                        <span class="logo-sardar">SARDAR</span>
+                        <span class="logo-rdx">RDX</span>
+                        <span class="logo-tools">TOOLS</span>
+                    </h3>
+                    <p class="footer-tagline">Advanced Automation Platform</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="#tools"><i class="fas fa-chevron-right"></i> Tools</a>
+                    <a href="#about"><i class="fas fa-chevron-right"></i> About</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <a href="mailto:support@sardarrdx.tools"><i class="fas fa-envelope"></i> support@sardarrdx.tools</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 <strong>SARDAR RDX TOOLS</strong>. All Rights Reserved.</p>
+                <p class="footer-credit">Designed with <i class="fas fa-heart"></i> by SARDAR RDX</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

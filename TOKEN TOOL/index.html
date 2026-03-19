@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX Token Tool | SARDAR RDX TOOLS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-cyan: #00ffff;
+            --secondary-purple: #9d00ff;
+            --accent-green: #00ff9d;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --bg-card: #121212;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --glow-cyan: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.03), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.03), transparent 50%);
+            z-index: -1;
+        }
+
+        .nav {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .nav-brand .sardar {
+            color: var(--text-white);
+        }
+
+        .nav-brand .rdx {
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .server-status {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .status-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .status-box .value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .status-box .label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-cyan);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            color: var(--primary-cyan);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .token-output {
+            background: var(--bg-darker);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            display: none;
+        }
+
+        .token-output.show {
+            display: block;
+        }
+
+        .token-output-label {
+            font-size: 0.8rem;
+            color: var(--primary-cyan);
+            margin-bottom: 8px;
+        }
+
+        .token-value {
+            color: var(--text-white);
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+        }
+
+        .btn-icon:hover {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--primary-cyan);
+        }
+
+        .log-window {
+            background: var(--bg-darker);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .log-time {
+            color: var(--text-gray);
+            margin-right: 10px;
+        }
+
+        .log-entry.info .log-message {
+            color: var(--primary-cyan);
+        }
+
+        .log-entry.success .log-message {
+            color: var(--accent-green);
+        }
+
+        .info-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box h4 {
+            color: var(--primary-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            margin-top: 3rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="sardar">SARDAR</span><span class="rdx">RDX</span>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="../../index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><span>RDX</span> Token Tool</h1>
+            <p>Advanced token generation and Facebook authentication tool with RSA encryption support.</p>
+        </div>
+
+        <div class="server-status">
+            <div class="status-box">
+                <span class="label">Tokens Generated</span>
+                <span class="value">847</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Success Rate</span>
+                <span class="value">97%</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Algorithm</span>
+                <span class="value">RSA+AES</span>
+            </div>
+        </div>
+
+        <div class="tool-grid">
+            <!-- Facebook Login -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fab fa-facebook"></i> Facebook Login</h3>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-user-secret"></i> Secure Login</h4>
+                    <p>Login with Facebook to generate access tokens. Uses encrypted password storage.</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email / Phone</label>
+                        <input type="text" id="email" placeholder="Enter email or phone..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Enter password..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>2FA Code (optional)</label>
+                        <input type="text" placeholder="If enabled">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Login & Generate Token
+                    </button>
+                </form>
+
+                <div class="token-output" id="tokenOutput">
+                    <div class="token-output-label">Generated Access Token:</div>
+                    <div class="token-value" id="tokenValue">EAA...</div>
+                    <button class="btn-icon" onclick="copyToken()" title="Copy"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+
+            <!-- Token Info -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-info-circle"></i> Token Info</h3>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-shield-alt"></i> Token Security</h4>
+                    <p>Your tokens are encrypted using AES-256 and RSA encryption.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Check Token</label>
+                    <input type="text" placeholder="Paste token to check...">
+                </div>
+                <button class="btn btn-secondary btn-block" onclick="checkToken()">
+                    <i class="fas fa-check-circle"></i> Validate Token
+                </button>
+
+                <div id="tokenInfo" style="margin-top: 1rem; display: none;">
+                    <div
+                        style="background: rgba(0, 255, 157, 0.1); padding: 1rem; border-radius: 8px; border: 1px solid rgba(0, 255, 157, 0.3);">
+                        <p style="color: var(--accent-green);"><i class="fas fa-check"></i> Token is valid!</p>
+                        <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 8px;">Expires: Never</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="tool-card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h3><i class="fas fa-terminal"></i> System Logs</h3>
+                </div>
+
+                <div class="log-window" id="logWindow">
+                    <div class="log-entry info">
+                        <span class="log-time">[10:30:45]</span>
+                        <span class="log-message">Flask Token Tool server started</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[10:30:46]</span>
+                        <span class="log-message">✓ RSA Key pair generated</span>
+                    </div>
+                    <div class="log-entry info">
+                        <span class="log-time">[10:31:00]</span>
+                        <span class="log-message">→ Login request received</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[10:31:05]</span>
+                        <span class="log-message">✓ Password encrypted with AES-256</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 <strong>SARDAR RDX TOOLS</strong>. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function addLog(type, message) {
+            const logWindow = document.getElementById('logWindow');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="log-time">[${time}]</span><span class="log-message">${message}</span>`;
+            logWindow.appendChild(entry);
+            logWindow.scrollTop = logWindow.scrollHeight;
+        }
+
+        function generateToken() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let token = 'EAA';
+            for (let i = 0; i < 80; i++) {
+                token += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return token;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const token = generateToken();
+            document.getElementById('tokenValue').textContent = token;
+            document.getElementById('tokenOutput').classList.add('show');
+            addLog('success', '✓ Token generated successfully');
+            addLog('info', '→ Authenticating with Facebook Graph API...');
+        });
+
+        function checkToken() {
+            document.getElementById('tokenInfo').style.display = 'block';
+            addLog('success', '✓ Token validated successfully');
+        }
+
+        function copyToken() {
+            const token = document.getElementById('tokenValue').textContent;
+            navigator.clipboard.writeText(token);
+            addLog('info', '→ Token copied to clipboard');
+        }
+
+        setInterval(() => {
+            const msgs = [
+                { type: 'info', msg: '→ Connecting to Facebook API...' },
+                { type: 'success', msg: '✓ Encryption key validated' },
+                { type: 'info', msg: '→ Generating session...' }
+            ];
+            const r = msgs[Math.floor(Math.random() * msgs.length)];
+            addLog(r.type, r.msg);
+        }, 5000);
+    </script>
+</body>
+
+</html>

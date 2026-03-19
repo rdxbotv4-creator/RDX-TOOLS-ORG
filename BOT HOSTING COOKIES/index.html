@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX Bot Hosting (Cookies) | SARDAR RDX TOOLS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-cyan: #00ffff;
+            --primary-blue: #00d4ff;
+            --secondary-purple: #9d00ff;
+            --accent-green: #00ff9d;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --bg-card: #121212;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --glow-cyan: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .nav-brand .sardar {
+            color: var(--text-white);
+        }
+
+        .nav-brand .rdx {
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-cyan);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Server Status */
+        .server-status {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .status-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .status-box.active {
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+
+        .status-box .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-box.active .indicator {
+            background: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+
+        .status-box .value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-cyan);
+            text-shadow: var(--glow-cyan);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .status-box .label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        /* Grid */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card */
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-cyan);
+        }
+
+        .card-header .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-cyan);
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            color: var(--primary-cyan);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Task List */
+        .task-list {
+            margin-top: 2rem;
+        }
+
+        .task-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-info h4 {
+            color: var(--text-white);
+            margin-bottom: 5px;
+        }
+
+        .task-info span {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon:hover {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+        }
+
+        .btn-icon.danger:hover {
+            background: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+
+        /* Logs */
+        .log-window {
+            background: var(--bg-darker);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            height: 250px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .log-time {
+            color: var(--text-gray);
+            margin-right: 10px;
+        }
+
+        .log-entry.info .log-message {
+            color: var(--primary-cyan);
+        }
+
+        .log-entry.success .log-message {
+            color: var(--accent-green);
+        }
+
+        .log-entry.error .log-message {
+            color: #ff4444;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box h4 {
+            color: var(--primary-cyan);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            margin-top: 3rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--primary-cyan);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="sardar">SARDAR</span><span class="rdx">RDX</span>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="../../index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="page-header">
+            <h1><span>RDX</span> Bot Hosting (Cookies)</h1>
+            <p>Advanced bot hosting service with cookie-based authentication. Manage your Facebook bots with persistent
+                sessions.</p>
+        </div>
+
+        <!-- Server Status -->
+        <div class="server-status">
+            <div class="status-box active">
+                <span class="indicator"></span>
+                <span class="label">Server Status</span>
+                <span class="value">Online</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Active Tasks</span>
+                <span class="value" id="taskCount">2</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Total Messages</span>
+                <span class="value" id="msgCount">1,247</span>
+            </div>
+            <div class="status-box">
+                <span class="label">Uptime</span>
+                <span class="value" id="uptime">99.9%</span>
+            </div>
+        </div>
+
+        <div class="tool-grid">
+            <!-- Create Task -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-plus-circle"></i> Create New Task</h3>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> How to use:</h4>
+                    <p>Add your Facebook cookies in the field below. Each cookie should be on a new line. The bot will
+                        auto-login using these cookies.</p>
+                </div>
+
+                <form id="createTaskForm">
+                    <div class="form-group">
+                        <label>Task Name</label>
+                        <input type="text" placeholder="Enter task name..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook Cookies (JSON format)</label>
+                        <textarea placeholder='[{"c_user":"12345","xs":"abc123..."}]'></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Target Thread ID</label>
+                        <input type="text" placeholder="Enter thread ID..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Enter message to send..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Interval (seconds)</label>
+                        <input type="number" value="5" min="1" max="60">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-rocket"></i> Start Task
+                    </button>
+                </form>
+            </div>
+
+            <!-- Active Tasks -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-tasks"></i> Active Tasks</h3>
+                </div>
+
+                <div class="task-list" id="taskList">
+                    <div class="task-item">
+                        <div class="task-info">
+                            <h4>Main Bot Task</h4>
+                            <span>Running • 1,247 messages sent</span>
+                        </div>
+                        <div class="task-actions">
+                            <button class="btn-icon" title="Stop"><i class="fas fa-stop"></i></button>
+                            <button class="btn-icon danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-info">
+                            <h4>Secondary Bot</h4>
+                            <span>Running • 892 messages sent</span>
+                        </div>
+                        <div class="task-actions">
+                            <button class="btn-icon" title="Stop"><i class="fas fa-stop"></i></button>
+                            <button class="btn-icon danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="tool-card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h3><i class="fas fa-list"></i> Live Logs</h3>
+                    <button class="btn btn-secondary" onclick="clearLogs()">
+                        <i class="fas fa-eraser"></i> Clear
+                    </button>
+                </div>
+
+                <div class="log-window" id="logWindow">
+                    <div class="log-entry info">
+                        <span class="log-time">[2024-01-15 10:30:45]</span>
+                        <span class="log-message">Server started successfully on port 20428</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[2024-01-15 10:30:46]</span>
+                        <span class="log-message">✓ Loaded 2 persistent tasks</span>
+                    </div>
+                    <div class="log-entry info">
+                        <span class="log-time">[2024-01-15 10:31:00]</span>
+                        <span class="log-message">→ Message sent successfully from cookie session 1</span>
+                    </div>
+                    <div class="log-entry success">
+                        <span class="log-time">[2024-01-15 10:31:05]</span>
+                        <span class="log-message">✓ Message sent to thread 123456789</span>
+                    </div>
+                    <div class="log-entry info">
+                        <span class="log-time">[2024-01-15 10:31:10]</span>
+                        <span class="log-message">→ Auto-restarting task: Main Bot Task</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 <strong>SARDAR RDX TOOLS</strong>. All Rights Reserved.</p>
+        <p>Powered by <a href="#">SARDAR RDX</a></p>
+    </footer>
+
+    <script>
+        // Add log entry
+        function addLog(type, message) {
+            const logWindow = document.getElementById('logWindow');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="log-time">[${time}]</span><span class="log-message">${message}</span>`;
+            logWindow.appendChild(entry);
+            logWindow.scrollTop = logWindow.scrollHeight;
+        }
+
+        // Clear logs
+        function clearLogs() {
+            document.getElementById('logWindow').innerHTML = '';
+            addLog('info', 'Logs cleared');
+        }
+
+        // Form submit
+        document.getElementById('createTaskForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            addLog('success', '✓ New task created successfully');
+            addLog('info', '→ Task started with 5 second interval');
+        });
+
+        // Simulate live logs
+        setInterval(() => {
+            const messages = [
+                { type: 'info', msg: '→ Checking cookie session validity...' },
+                { type: 'success', msg: '✓ Session valid, ready to send' },
+                { type: 'info', msg: '→ Sending message to thread...' },
+                { type: 'success', msg: '✓ Message sent successfully' }
+            ];
+            const random = messages[Math.floor(Math.random() * messages.length)];
+            addLog(random.type, random.msg);
+        }, 5000);
+    </script>
+</body>
+
+</html>
